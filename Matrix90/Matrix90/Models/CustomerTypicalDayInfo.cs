@@ -12,7 +12,7 @@ namespace Matrix90.Models
         [Key]
         public int CustomerTypicalDayInfoId { get; set; }
         [ForeignKey("Customer")]
-        public int CustomerId { get; set; }
+        public string IdentityUserId{ get; set; }
         public double WakeUpTime { get; set; }
         public double BedTime { get; set; }
         public bool SleepDifficulty { get; set; }

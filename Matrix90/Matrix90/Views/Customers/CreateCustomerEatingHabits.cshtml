@@ -1,0 +1,85 @@
+﻿@model Matrix90.Models.CustomerEatingHabits
+
+@{
+    ViewData["Title"] = "CreateCustomerEatingHabits";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>My Eating Habits</h1>
+
+<h4>Please fill out the form to the best of your ability.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateCustomerEatingHabits">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="TypicalBreakfast" class="control-label">Typical Breakfast</label>
+                <input asp-for="TypicalBreakfast" class="form-control" />
+                <span asp-validation-for="TypicalBreakfast" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypicalLunch" class="control-label">Typical Lunch</label>
+                <input asp-for="TypicalLunch" class="form-control" />
+                <span asp-validation-for="TypicalLunch" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypicalDinner" class="control-label">Typical Dinner</label>
+                <input asp-for="TypicalDinner" class="form-control" />
+                <span asp-validation-for="TypicalDinner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypicalSnack" class="control-label">Typical Snack</label>
+                <input asp-for="TypicalSnack" class="form-control" />
+                <span asp-validation-for="TypicalSnack" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DrinkSodaAmount" class="control-label">How Much Soda Do You Drink? (in ounces)</label>
+                <input asp-for="DrinkSodaAmount" class="form-control" />
+                <span asp-validation-for="DrinkSodaAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DrinkAlcoholAmount" class="control-label">How Much Alcohol Do You Drink? (in ounces)</label>
+                <input asp-for="DrinkAlcoholAmount" class="form-control" />
+                <span asp-validation-for="DrinkAlcoholAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="FoodAllergies" /> Check the box if you have food allergies.
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="KindOfFoodAllergies" class="control-label">If you have allergies, please provide your allergies.</label>
+                <input asp-for="KindOfFoodAllergies" class="form-control" />
+                <span asp-validation-for="KindOfFoodAllergies" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FavoriteFoods" class="control-label">What are your favorite foods?</label>
+                <input asp-for="FavoriteFoods" class="form-control" />
+                <span asp-validation-for="FavoriteFoods" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NonFavoriteFoods" class="control-label">What foods do you not like?</label>
+                <input asp-for="NonFavoriteFoods" class="form-control" />
+                <span asp-validation-for="NonFavoriteFoods" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalInfo" class="control-label">Additional Info?</label>
+                <input asp-for="AdditionalInfo" class="form-control" />
+                <span asp-validation-for="AdditionalInfo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="CreateCustomerEatingHabits" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

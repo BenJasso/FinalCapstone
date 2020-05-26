@@ -12,7 +12,7 @@ namespace Matrix90.Models
         [Key]
         public int CustomerEatingHabitsId { get; set; }
         [ForeignKey("Customer")]
-        public int CustomerId { get; set; }
+        public string IdentityUserId { get; set; }
         public string TypicalBreakfast { get; set; }
         public string TypicalLunch { get; set; }
         public string TypicalDinner { get; set; }

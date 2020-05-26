@@ -12,7 +12,7 @@ namespace Matrix90.Models
         [Key]
         public int CustomerMeasurementsId { get; set; }
         [ForeignKey("Customer")]
-        public int CustomerId { get; set; }
+        public string IdentityUserId { get; set; }
         public int Height { get; set; }
         public int CurrentWeight { get; set; }
         public int GoalWeight { get; set; }

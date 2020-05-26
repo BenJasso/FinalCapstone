@@ -1,0 +1,65 @@
+﻿@model Matrix90.Models.CustomerMeasurements
+
+@{
+    ViewData["Title"] = "CreateCustomerMeasurements";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h1>My Measurements</h1>
+
+<h4>Please fill out the form to the best of your ability.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateCustomerMeasurements">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="Height" class="control-label">Height(inches)</label>
+                <input asp-for="Height" class="form-control" />
+                <span asp-validation-for="Height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentWeight" class="control-label">Weight(pounds)</label>
+                <input asp-for="CurrentWeight" class="form-control" />
+                <span asp-validation-for="CurrentWeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GoalWeight" class="control-label">Goal Weight(pounds)</label>
+                <input asp-for="GoalWeight" class="form-control" />
+                <span asp-validation-for="GoalWeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wrist" class="control-label">Wrist(inches)</label>
+                <input asp-for="Wrist" class="form-control" />
+                <span asp-validation-for="Wrist" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Forearm" class="control-label">Forearm(inches)</label>
+                <input asp-for="Forearm" class="form-control" />
+                <span asp-validation-for="Forearm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hips" class="control-label">Hips(inches)</label>
+                <input asp-for="Hips" class="form-control" />
+                <span asp-validation-for="Hips" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Waist" class="control-label">Waist(inches)</label>
+                <input asp-for="Waist" class="form-control" />
+                <span asp-validation-for="Waist" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

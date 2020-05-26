@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Matrix90.Models
 {
@@ -22,11 +24,13 @@ namespace Matrix90.Models
         public double PhoneNumber { get; set; } 
         public string PrefferedMethodOfContact { get; set; }
         public string BestTimeToReach { get; set; }
-        public byte[] FrontImage { get; set; }
-        public byte[] BackImage { get; set; }
-        public byte[] ProfileRight { get; set; }
-        public byte[] ProfileLeft { get; set; }
-        [ForeignKey("IdentityUser")] public string IdentityUserId { get; set; }
+        public string FrontImage { get; set; }
+      
+        public string BackImage { get; set; }
+        public string ProfileRight { get; set; }
+        public string ProfileLeft { get; set; }
+        [ForeignKey("IdentityUser")] 
+        public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
 
     }

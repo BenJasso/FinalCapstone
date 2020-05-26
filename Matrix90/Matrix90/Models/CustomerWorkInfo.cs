@@ -12,7 +12,7 @@ namespace Matrix90.Models
         [Key]
         public int CustomerWorkInfoId{get;set;}
         [ForeignKey("CustomerId")]
-        public int CustomerId { get; set; }
+        public string IdentityUserId { get; set; }
         public string Occupation { get; set; }
         public string Shift { get; set; }
         public string WorkDays { get; set; }

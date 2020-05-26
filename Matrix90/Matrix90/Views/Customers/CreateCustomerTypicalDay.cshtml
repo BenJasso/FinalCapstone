@@ -1,0 +1,85 @@
+﻿@model Matrix90.Models.CustomerTypicalDayInfo
+
+@{
+    ViewData["Title"] = "CreateCustomerTypicalDay";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h1>My Typical Day</h1>
+
+<h4>Please fill out the form to the best of your ability.</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateCustomerTypicalDay">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="WakeUpTime" class="control-label">What time do you normally wake up?</label>
+                <input asp-for="WakeUpTime" class="form-control" />
+                <span asp-validation-for="WakeUpTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BedTime" class="control-label">What time do you normally go to bed?</label>
+                <input asp-for="BedTime" class="form-control" />
+                <span asp-validation-for="BedTime" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="SleepDifficulty" /> Check box if you have difficulty sleeping.
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="NightlyWakeUps" class="control-label">If any, how many times do you wake up per night?</label>
+                <input asp-for="NightlyWakeUps" class="form-control" />
+                <span asp-validation-for="NightlyWakeUps" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BreakfastTime" class="control-label">What time do you eat breakfast?</label>
+                <input asp-for="BreakfastTime" class="form-control" />
+                <span asp-validation-for="BreakfastTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LunchTime" class="control-label">What time do you eat lunch?</label>
+                <input asp-for="LunchTime" class="form-control" />
+                <span asp-validation-for="LunchTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DinnerTime" class="control-label">What time do you eat dinner?</label>
+                <input asp-for="DinnerTime" class="form-control" />
+                <span asp-validation-for="DinnerTime" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="SnackDuringDay" /> Do you snack during the day?
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="SnackDuringDayTimes" class="control-label">How many times a day do you snack?</label>
+                <input asp-for="SnackDuringDayTimes" class="form-control" />
+                <span asp-validation-for="SnackDuringDayTimes" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="EatingTimeFlexibility" /> Do you have the ability for flexible eating times?
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="AdditionalInfo" class="control-label">Additional Info?</label>
+                <input asp-for="AdditionalInfo" class="form-control" />
+                <span asp-validation-for="AdditionalInfo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

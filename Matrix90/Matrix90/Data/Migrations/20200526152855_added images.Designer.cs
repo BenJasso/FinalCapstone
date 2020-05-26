@@ -4,14 +4,16 @@ using Matrix90.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Matrix90.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200526152855_added images")]
+    partial class addedimages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,8 +90,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<bool>("AccessToFacility")
                         .HasColumnType("bit");
 
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
 
                     b.Property<int>("RoutineDaysAWeek")
                         .HasColumnType("int");
@@ -115,6 +117,9 @@ namespace Matrix90.Data.Migrations
                     b.Property<string>("AdditionalInfo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("DrinkAlcoholAmount")
                         .HasColumnType("int");
 
@@ -126,9 +131,6 @@ namespace Matrix90.Data.Migrations
 
                     b.Property<bool>("FoodAllergies")
                         .HasColumnType("bit");
-
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("KindOfFoodAllergies")
                         .HasColumnType("nvarchar(max)");
@@ -163,6 +165,9 @@ namespace Matrix90.Data.Migrations
                     b.Property<int>("CurrentWeight")
                         .HasColumnType("int");
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Forearm")
                         .HasColumnType("int");
 
@@ -174,9 +179,6 @@ namespace Matrix90.Data.Migrations
 
                     b.Property<int>("Hips")
                         .HasColumnType("int");
-
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Waist")
                         .HasColumnType("int");
@@ -199,14 +201,14 @@ namespace Matrix90.Data.Migrations
                     b.Property<string>("AdditionalInfo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<string>("GastroInfo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("GastroIntestinalDiscomfort")
                         .HasColumnType("bit");
-
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Injuries")
                         .HasColumnType("nvarchar(max)");
@@ -253,14 +255,14 @@ namespace Matrix90.Data.Migrations
                     b.Property<double>("BreakfastTime")
                         .HasColumnType("float");
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<double>("DinnerTime")
                         .HasColumnType("float");
 
                     b.Property<bool>("EatingTimeFlexibility")
                         .HasColumnType("bit");
-
-                    b.Property<string>("IdentityUserId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("LunchTime")
                         .HasColumnType("float");
@@ -301,10 +303,10 @@ namespace Matrix90.Data.Migrations
                     b.Property<bool>("BringLunchAbility")
                         .HasColumnType("bit");
 
-                    b.Property<string>("DailyWorkHours")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("IdentityUserId")
+                    b.Property<string>("DailyWorkHours")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Occupation")
@@ -628,15 +630,15 @@ namespace Matrix90.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e2a1d2bd-ef55-4121-968e-1e91b0643c34",
-                            ConcurrencyStamp = "00c0b36d-60d3-4d93-8e75-2136c9df429f",
+                            Id = "530f5e8f-9e13-4d95-acca-310e7af00f25",
+                            ConcurrencyStamp = "0e13117d-a387-4972-905d-7558832030c1",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "a99931bf-fffd-439c-8278-9aa26b392017",
-                            ConcurrencyStamp = "6a314e72-adf7-4b23-a69f-82d55dc4bd42",
+                            Id = "994288f9-2def-4e2c-9fbb-b158d8fee7bb",
+                            ConcurrencyStamp = "3b39e0e5-4167-434f-b1e3-287bcb6078cb",
                             Name = "Nutritionist",
                             NormalizedName = "NUTRITIONIST"
                         });

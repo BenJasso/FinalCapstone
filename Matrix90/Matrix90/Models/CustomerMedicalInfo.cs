@@ -12,7 +12,7 @@ namespace Matrix90.Models
         [Key]
         public int CustomerMedicalInfoId { get; set; }
         [ForeignKey("Customer")]
-        public int CustomerId { get; set; }
+        public string IdentityUserId { get; set; }
         public string MedicalConditions { get; set; }
         public string Injuries { get; set; }
         public string PhysicalActivityLimitations { get; set; }
