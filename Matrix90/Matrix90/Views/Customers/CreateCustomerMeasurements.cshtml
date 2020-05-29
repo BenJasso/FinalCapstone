@@ -13,16 +13,16 @@
     <div class="col-md-4">
         <form asp-action="CreateCustomerMeasurements">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-           
+
             <div class="form-group">
                 <label asp-for="Height" class="control-label">Height(inches)</label>
                 <input asp-for="Height" class="form-control" />
                 <span asp-validation-for="Height" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CurrentWeight" class="control-label">Weight(pounds)</label>
-                <input asp-for="CurrentWeight" class="form-control" />
-                <span asp-validation-for="CurrentWeight" class="text-danger"></span>
+                <label asp-for="StartingWeight" class="control-label">Weight(pounds)</label>
+                <input asp-for="StartingWeight" class="form-control" />
+                <span asp-validation-for="StartingWeight" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="GoalWeight" class="control-label">Goal Weight(pounds)</label>
@@ -30,14 +30,14 @@
                 <span asp-validation-for="GoalWeight" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Wrist" class="control-label">Wrist(inches)</label>
-                <input asp-for="Wrist" class="form-control" />
-                <span asp-validation-for="Wrist" class="text-danger"></span>
+                <label asp-for="Neck" class="control-label">Neck(inches)</label>
+                <input asp-for="Neck" class="form-control" />
+                <span asp-validation-for="Neck" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Forearm" class="control-label">Forearm(inches)</label>
-                <input asp-for="Forearm" class="form-control" />
-                <span asp-validation-for="Forearm" class="text-danger"></span>
+                <label asp-for="Arms" class="control-label">Arms(inches)</label>
+                <input asp-for="Arms" class="form-control" />
+                <span asp-validation-for="Arms" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Hips" class="control-label">Hips(inches)</label>
@@ -48,6 +48,21 @@
                 <label asp-for="Waist" class="control-label">Waist(inches)</label>
                 <input asp-for="Waist" class="form-control" />
                 <span asp-validation-for="Waist" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Chest" class="control-label">Chest(inches)</label>
+                <input asp-for="Chest" class="form-control" />
+                <span asp-validation-for="Chest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Thigh" class="control-label">Thigh(inches)</label>
+                <input asp-for="Thigh" class="form-control" />
+                <span asp-validation-for="Thigh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Calves" class="control-label">Calves(inches)</label>
+                <input asp-for="Calves" class="form-control" />
+                <span asp-validation-for="Calves" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="submit" class="btn btn-primary" />

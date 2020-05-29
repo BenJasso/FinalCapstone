@@ -4,14 +4,16 @@ using Matrix90.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Matrix90.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200528155956_added starting weight to customer model")]
+    partial class addedstartingweighttocustomermodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -160,16 +162,10 @@ namespace Matrix90.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Arms")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Calves")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Chest")
-                        .HasColumnType("int");
-
                     b.Property<int>("CurrentWeight")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Forearm")
                         .HasColumnType("int");
 
                     b.Property<int>("GoalWeight")
@@ -184,16 +180,13 @@ namespace Matrix90.Data.Migrations
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Neck")
-                        .HasColumnType("int");
-
                     b.Property<int>("StartingWeight")
                         .HasColumnType("int");
 
-                    b.Property<int>("Thigh")
+                    b.Property<int>("Waist")
                         .HasColumnType("int");
 
-                    b.Property<int>("Waist")
+                    b.Property<int>("Wrist")
                         .HasColumnType("int");
 
                     b.HasKey("CustomerMeasurementsId");
@@ -640,15 +633,15 @@ namespace Matrix90.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0ed1f23a-c0e4-4362-941a-1341486e72e7",
-                            ConcurrencyStamp = "86da85d3-268a-40d7-a41e-4569181a4b7d",
+                            Id = "dfc38330-4cc9-45aa-95d0-cf488f5b3195",
+                            ConcurrencyStamp = "4d71dbb8-4bca-4d7f-b6f1-36e76ee87c93",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "a3418e05-56c1-4862-86eb-dc69e6d09702",
-                            ConcurrencyStamp = "392dd115-abac-4d63-87ee-bd1e5f005097",
+                            Id = "7df68141-57b7-4fb8-8b5b-576ab737cb40",
+                            ConcurrencyStamp = "e4855aff-67d0-442a-b4f7-63f4049d57ec",
                             Name = "Nutritionist",
                             NormalizedName = "NUTRITIONIST"
                         });

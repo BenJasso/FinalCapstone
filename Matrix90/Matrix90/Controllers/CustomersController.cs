@@ -31,8 +31,11 @@ namespace Matrix90.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
+            
             var UserId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if(_context.Customers.Where(c=> c.IdentityUserId == UserId).SingleOrDefault() == null)
+            var Customer = _context.Customers.Where(c => c.IdentityUserId == UserId).SingleOrDefault();
+            
+            if (_context.Customers.Where(c=> c.IdentityUserId == UserId).SingleOrDefault() == null)
             {
                 return View("CreateCustomer");
             }
@@ -60,8 +63,15 @@ namespace Matrix90.Controllers
             {
                 return View("CreateCustomerMedicalInfo");
             }
-            var applicationDbContext = _context.Customers.Include(c => c.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            var measurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == UserId).SingleOrDefault();
+            int weightDifference = measurements.GoalWeight - measurements.StartingWeight;
+            int weightProgress = measurements.CurrentWeight - measurements.StartingWeight;
+            double progressBarPercentage = (double)weightProgress / (double)weightDifference * 100.0;
+            ViewBag.progress = progressBarPercentage;
+            ViewBag.NutritrtionPlan = _context.NutritionPlans.Where(n => n.CustomerId == Customer.CustomerId).SingleOrDefault();
+            ViewBag.Measurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == UserId).SingleOrDefault();
+
+            return View(Customer);
         }
 
         // GET: Customers/Details/5
@@ -278,13 +288,17 @@ namespace Matrix90.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             CustomerMeasurements temp = new CustomerMeasurements
             {
+                StartingWeight = model.StartingWeight,
                 CurrentWeight = model.CurrentWeight,
                 GoalWeight = model.GoalWeight,
                 Height = model.Height,
-                Forearm = model.Forearm,
+                Arms = model.Arms,
                 Waist = model.Waist,
                 Hips = model.Hips,
-                Wrist = model.Wrist,
+                Neck = model.Neck,
+                Chest = model.Chest,
+                Thigh= model.Thigh,
+                Calves = model.Calves,
                 IdentityUserId = userId
             };
 
@@ -396,6 +410,15 @@ namespace Matrix90.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> CustomerNutritionPlan()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var currentCustomer = _context.Customers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            var nutritionPlan = _context.NutritionPlans.Where(n => n.CustomerId == currentCustomer.CustomerId).SingleOrDefault();
+            return View(nutritionPlan);
         }
     }
 }
