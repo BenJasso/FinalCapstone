@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Matrix90.Data;
 using Matrix90.Models;
+using Matrix90.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting.Internal;
+using Microsoft.Extensions.Hosting;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace Matrix90.Controllers
 {
@@ -54,7 +60,7 @@ namespace Matrix90.Controllers
         {
             _context.NutritionPlans.Add(newPlan);
             _context.SaveChanges();
-            return View();
+            return RedirectToAction("ViewCustomer", new { customerId = newPlan.CustomerId });
         }
 
         [HttpGet]
@@ -130,7 +136,7 @@ namespace Matrix90.Controllers
             currentNP.Supplement2 = newPlan.Supplement2;
             currentNP.Supplement3 = newPlan.Supplement3;
             _context.SaveChanges();
-            return View();
+            return RedirectToAction("ViewCustomer", new { customerId = newPlan.CustomerId });
         }
 
 
@@ -176,7 +182,7 @@ namespace Matrix90.Controllers
 
 
         // GET: Nutritionists/Create
-        public ActionResult Create()
+        public ActionResult CreateTip()
         {
             return View();
         }
@@ -184,12 +190,52 @@ namespace Matrix90.Controllers
         // POST: Nutritionists/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult CreateTip(TipOfWeek newTip)
         {
             try
             {
                 // TODO: Add insert logic here
+                newTip.uploadDate = DateTime.Now;
+                _context.TipOfWeeks.Add(newTip);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
+        // GET: Nutritionists/Create
+        public ActionResult CreateRecipe()
+        {
+            return View();
+        }
+
+        // POST: Nutritionists/Create
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateRecipe(RecipeViewModel model)
+        {
+            try
+            {
+                string RecipeFileName = null;
+                if (model.RecipeImage != null)
+                {
+                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
+                    RecipeFileName = Guid.NewGuid().ToString() + "_" + model.RecipeImage.FileName;
+                    string filePath = Path.Combine(uploadsFolder, RecipeFileName);
+                    model.RecipeImage.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+                // TODO: Add insert logic here
+                model.uploadDate = DateTime.Now;
+                Recipe newRecipe = new Recipe();
+                newRecipe.RecipeInfo = model.RecipeInfo;
+                newRecipe.Type = model.Type;
+                newRecipe.uploadDate = model.uploadDate;
+                newRecipe.RecipeImage = RecipeFileName;
+                _context.Recipes.Add(newRecipe);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch

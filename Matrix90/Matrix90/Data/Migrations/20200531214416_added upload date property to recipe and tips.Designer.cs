@@ -4,14 +4,16 @@ using Matrix90.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Matrix90.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200531214416_added upload date property to recipe and tips")]
+    partial class addeduploaddatepropertytorecipeandtips
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -579,8 +581,8 @@ namespace Matrix90.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("RecipeImage")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("RecipeImage")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("RecipeInfo")
                         .HasColumnType("nvarchar(max)");
@@ -646,15 +648,15 @@ namespace Matrix90.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "68747194-2cc0-4b8d-8c21-e0887f3a7a93",
-                            ConcurrencyStamp = "3264158c-e857-4598-b39f-0f6cadd3c4cc",
+                            Id = "ec6db505-a80b-48af-b862-8e6ac84e47fb",
+                            ConcurrencyStamp = "dc431db7-c9ae-43a3-a120-a180bd8425ff",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "52b45a22-6684-49aa-90b7-1db0bb50fb92",
-                            ConcurrencyStamp = "c10eacd4-f6e5-4669-9d0f-b1652f537019",
+                            Id = "0699410d-af1b-4389-a86e-1b74d7873aec",
+                            ConcurrencyStamp = "22b66a28-a2fa-4c7d-a88a-94e224473d1c",
                             Name = "Nutritionist",
                             NormalizedName = "NUTRITIONIST"
                         });

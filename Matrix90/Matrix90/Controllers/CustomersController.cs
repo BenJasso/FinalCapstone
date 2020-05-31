@@ -142,6 +142,7 @@ namespace Matrix90.Controllers
                     string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "Images");
                     RightUniqueFileName = Guid.NewGuid().ToString() + "_" + model.ProfileRight.FileName;
                     string filePath = Path.Combine(uploadsFolder, RightUniqueFileName);
+                    
                     model.ProfileRight.CopyTo(new FileStream(filePath, FileMode.Create));
                 }
 
