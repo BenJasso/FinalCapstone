@@ -420,5 +420,21 @@ namespace Matrix90.Controllers
             var nutritionPlan = _context.NutritionPlans.Where(n => n.CustomerId == currentCustomer.CustomerId).SingleOrDefault();
             return View(nutritionPlan);
         }
+
+        [HttpGet]
+
+        public async Task<IActionResult> Martix90Tips()
+        {
+            List<TipOfWeek> Tips = _context.TipOfWeeks.ToList();
+            return View(Tips);
+        }
+
+        [HttpGet]
+
+        public async Task<IActionResult> Matrix90Recipes()
+        {
+            List<Recipe> Recipes = _context.Recipes.ToList();
+            return View(Recipes);
+        }
     }
 }

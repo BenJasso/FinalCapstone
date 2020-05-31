@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -32,6 +33,8 @@ namespace Matrix90.Models
         [ForeignKey("IdentityUser")] 
         public string IdentityUserId { get; set; }
         public IdentityUser IdentityUser { get; set; }
+        
+
 
     }
 }

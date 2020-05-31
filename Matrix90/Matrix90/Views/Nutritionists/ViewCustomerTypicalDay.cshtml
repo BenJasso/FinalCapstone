@@ -1,0 +1,91 @@
+﻿@model Matrix90.Models.CustomerTypicalDayInfo
+
+@{
+    ViewData["Title"] = "ViewCustomerTypicalDay";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h1>ViewCustomerTypicalDay</h1>
+
+<div>
+    <h4>CustomerTypicalDayInfo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdentityUserId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdentityUserId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WakeUpTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WakeUpTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BedTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BedTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SleepDifficulty)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SleepDifficulty)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NightlyWakeUps)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NightlyWakeUps)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BreakfastTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BreakfastTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LunchTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LunchTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DinnerTime)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DinnerTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SnackDuringDay)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SnackDuringDay)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SnackDuringDayTimes)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SnackDuringDayTimes)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EatingTimeFlexibility)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EatingTimeFlexibility)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AdditionalInfo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AdditionalInfo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CustomerTypicalDayInfoId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

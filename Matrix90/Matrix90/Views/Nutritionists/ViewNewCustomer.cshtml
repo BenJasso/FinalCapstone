@@ -1,0 +1,568 @@
+﻿@model Matrix90.Models.NutritionPlan
+
+@{
+    CustomerMeasurements Measurements = ViewBag.Measurements;
+    Customer customer = ViewBag.Customer;
+    int customerId = ViewBag.CustomerId;
+    ViewData["Title"] = "ViewNewCustomer";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<div><br /></div>
+<div style="text-align:center; "><img src="~/Images/logo.png" /></div>
+<div> <br /></div>
+
+<div class="jumbotron">
+<h1 class="display-3" style="text-align:center">@customer.FirstName @customer.LastName</h1>
+
+<div class="row">
+
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-12 mb-4">
+
+        <!--Modal: Name-->
+        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/A3PDXmYoF5U"
+                                    allowfullscreen></iframe>
+                        </div>
+
+                    </div>
+
+                    <!--Footer-->
+                   
+
+                </div>
+                <!--/.Content-->
+
+            </div>
+        </div>
+        <!--Modal: Name-->
+
+        <a>
+            <img class="img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-1.jpg" alt="video"
+                 data-toggle="modal" data-target="#modal1">
+        </a>
+
+    </div>
+    <!-- Grid column -->
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-6 mb-4">
+
+        <!--Modal: Name-->
+        <div class="modal fade" id="modal6" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/wTcNtgA6gHs"
+                                    allowfullscreen></iframe>
+                        </div>
+
+                    </div>
+
+                    <!--Footer-->
+                    
+
+                </div>
+                <!--/.Content-->
+
+            </div>
+        </div>
+        <!--Modal: Name-->
+
+        <a>
+            <img class="img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-2.jpg" alt="video"
+                 data-toggle="modal" data-target="#modal6">
+        </a>
+
+    </div>
+    <!-- Grid column -->
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-6 mb-4">
+
+        <!--Modal: Name-->
+        <div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+
+                <!--Content-->
+                <div class="modal-content">
+
+                    <!--Body-->
+                    <div class="modal-body mb-0 p-0">
+
+                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vlDzYIIOYmM"
+                                    allowfullscreen></iframe>
+                        </div>
+
+                    </div>
+
+                    <!--Footer-->
+                    
+
+                </div>
+                <!--/.Content-->
+
+            </div>
+        </div>
+        <!--Modal: Name-->
+
+        <a>
+            <img class="img-fluid z-depth-1" src="https://mdbootstrap.com/img/screens/yt/screen-video-3.jpg" alt="video"
+                 data-toggle="modal" data-target="#modal4">
+        </a>
+
+    </div>
+    <!-- Grid column -->
+
+</div>
+<h4 style="text-align:center">Starting Weight: @Measurements.StartingWeight  |  Current Weight: @Measurements.CurrentWeight  |  Goal Weight: @Measurements.GoalWeight</h4>
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+</div>
+</div>
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-2">
+            <a href="#" class="btn btn-info" onclick="location.href='@Url.Action("ViewCustomerMedicalInfo", "Nutritionists" , new { customerId = @customerId})'">Medical Info</a>
+        </div>
+        <div class="col-md-2">
+            <a href="#" class="btn btn-info" onclick="location.href='@Url.Action("ViewCustomerActivityInfo", "Nutritionists" , new { customerId = @customerId})'">Activity Info</a>
+        </div>
+        <div class="col-md-2">
+            <a href="#" class="btn btn-info" onclick="location.href='@Url.Action("ViewCustomerWorkInfo", "Nutritionists" , new { customerId = @customerId})'">Work Info</a>
+        </div>
+        <div class="col-md-2">
+            <a href="#" class="btn btn-info" onclick="location.href='@Url.Action("ViewCustomerEatingHabits", "Nutritionists" , new { customerId = @customerId})'">Eating Habits</a>
+        </div>
+        <div class="col-md-2">
+            <a href="#" class="btn btn-info" onclick="location.href='@Url.Action("ViewCustomerTypicalDay", "Nutritionists" , new { customerId = @customerId})'">Typical Day</a>
+        </div>
+        <div class="col-md-2">
+            <a href="#" class="btn btn-info" onclick="location.href='@Url.Action("ViewCustomerMeasurements", "Nutritionists" , new { customerId = @customerId})'">Measurements</a>
+        </div>
+
+    </div>
+</div>
+<div class="row">
+
+    <form asp-action="ViewNewCustomer">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+
+            <input type="hidden" asp-for="CustomerId" value="@customerId" class="form-control" />
+            <span asp-validation-for="CustomerId" class="text-danger"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+
+
+
+
+
+                <div class="card border-success mb-3" style="max-width: 100rem;">
+                    <div style="text-align:center" class="card-header">Meal 1</div>
+                    <div style="text-align:center" class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Meal1Time" class="control-label"></label>
+                            <input asp-for="Meal1Time" class="form-control" />
+                            <span asp-validation-for="Meal1Time" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal1Entree" class="control-label"></label>
+                            <input asp-for="Meal1Entree" class="form-control" />
+                            <span asp-validation-for="Meal1Entree" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal1EntreeSize" class="control-label"></label>
+                            <input asp-for="Meal1EntreeSize" class="form-control" />
+                            <span asp-validation-for="Meal1EntreeSize" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal1Vegetable" class="control-label"></label>
+                            <input asp-for="Meal1Vegetable" class="form-control" />
+                            <span asp-validation-for="Meal1Vegetable" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal1VegetableSize" class="control-label"></label>
+                            <input asp-for="Meal1VegetableSize" class="form-control" />
+                            <span asp-validation-for="Meal1VegetableSize" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal1Carb" class="control-label"></label>
+                            <input asp-for="Meal1Carb" class="form-control" />
+                            <span asp-validation-for="Meal1Carb" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal1CarbSize" class="control-label"></label>
+                            <input asp-for="Meal1CarbSize" class="form-control" />
+                            <span asp-validation-for="Meal1CarbSize" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+
+
+                <div class="card border-success mb-3" style="max-width: 100rem;">
+                    <div style="text-align:center" class="card-header">Meal 2</div>
+                    <div style="text-align:center" class="card-body">
+
+                        <div class="form-group">
+                            <label asp-for="Meal2Time" class="control-label"></label>
+                            <input asp-for="Meal2Time" class="form-control" />
+                            <span asp-validation-for="Meal2Time" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal2Entree" class="control-label"></label>
+                            <input asp-for="Meal2Entree" class="form-control" />
+                            <span asp-validation-for="Meal2Entree" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal2EntreeSize" class="control-label"></label>
+                            <input asp-for="Meal2EntreeSize" class="form-control" />
+                            <span asp-validation-for="Meal2EntreeSize" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal2Vegetable" class="control-label"></label>
+                            <input asp-for="Meal2Vegetable" class="form-control" />
+                            <span asp-validation-for="Meal2Vegetable" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal2VegetableSize" class="control-label"></label>
+                            <input asp-for="Meal2VegetableSize" class="form-control" />
+                            <span asp-validation-for="Meal2VegetableSize" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal2Carb" class="control-label"></label>
+                            <input asp-for="Meal2Carb" class="form-control" />
+                            <span asp-validation-for="Meal2Carb" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal2CarbSize" class="control-label"></label>
+                            <input asp-for="Meal2CarbSize" class="form-control" />
+                            <span asp-validation-for="Meal2CarbSize" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-success mb-3" style="max-width: 100rem;">
+                    <div style="text-align:center" class="card-header">Meal 3</div>
+                    <div style="text-align:center" class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Meal3Time" class="control-label"></label>
+                            <input asp-for="Meal3Time" class="form-control" />
+                            <span asp-validation-for="Meal3Time" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal3Entree" class="control-label"></label>
+                            <input asp-for="Meal3Entree" class="form-control" />
+                            <span asp-validation-for="Meal3Entree" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal3EntreeSize" class="control-label"></label>
+                            <input asp-for="Meal3EntreeSize" class="form-control" />
+                            <span asp-validation-for="Meal3EntreeSize" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal3Vegetable" class="control-label"></label>
+                            <input asp-for="Meal3Vegetable" class="form-control" />
+                            <span asp-validation-for="Meal3Vegetable" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal3VegetableSize" class="control-label"></label>
+                            <input asp-for="Meal3VegetableSize" class="form-control" />
+                            <span asp-validation-for="Meal3VegetableSize" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal3Carb" class="control-label"></label>
+                            <input asp-for="Meal3Carb" class="form-control" />
+                            <span asp-validation-for="Meal3Carb" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal3CarbSize" class="control-label"></label>
+                            <input asp-for="Meal3CarbSize" class="form-control" />
+                            <span asp-validation-for="Meal3CarbSize" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card border-success mb-3" style="max-width: 100rem;">
+                    <div style="text-align:center" class="card-header">Meal 4</div>
+                    <div style="text-align:center" class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Meal4Time" class="control-label"></label>
+                            <input asp-for="Meal4Time" class="form-control" />
+                            <span asp-validation-for="Meal4Time" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal4Entree" class="control-label"></label>
+                            <input asp-for="Meal4Entree" class="form-control" />
+                            <span asp-validation-for="Meal4Entree" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal4EntreeSize" class="control-label"></label>
+                            <input asp-for="Meal4EntreeSize" class="form-control" />
+                            <span asp-validation-for="Meal4EntreeSize" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal4Vegetable" class="control-label"></label>
+                            <input asp-for="Meal4Vegetable" class="form-control" />
+                            <span asp-validation-for="Meal4Vegetable" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal4VegetableSize" class="control-label"></label>
+                            <input asp-for="Meal4VegetableSize" class="form-control" />
+                            <span asp-validation-for="Meal4VegetableSize" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal4Carb" class="control-label"></label>
+                            <input asp-for="Meal4Carb" class="form-control" />
+                            <span asp-validation-for="Meal4Carb" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal4CarbSize" class="control-label"></label>
+                            <input asp-for="Meal4CarbSize" class="form-control" />
+                            <span asp-validation-for="Meal4CarbSize" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div class="card border-success mb-3" style="max-width: 100rem;">
+                        <div style="text-align:center" class="card-header">Meal 5</div>
+                        <div style="text-align:center" class="card-body">
+                            <div class="form-group">
+                                <label asp-for="Meal5Time" class="control-label"></label>
+                                <input asp-for="Meal5Time" class="form-control" />
+                                <span asp-validation-for="Meal5Time" class="text-danger"></span>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label asp-for="Meal5Entree" class="control-label"></label>
+                                <input asp-for="Meal5Entree" class="form-control" />
+                                <span asp-validation-for="Meal5Entree" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Meal5EntreeSize" class="control-label"></label>
+                                <input asp-for="Meal5EntreeSize" class="form-control" />
+                                <span asp-validation-for="Meal5EntreeSize" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Meal5Vegetable" class="control-label"></label>
+                                <input asp-for="Meal5Vegetable" class="form-control" />
+                                <span asp-validation-for="Meal5Vegetable" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Meal5VegetableSize" class="control-label"></label>
+                                <input asp-for="Meal5VegetableSize" class="form-control" />
+                                <span asp-validation-for="Meal5VegetableSize" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Meal5Carb" class="control-label"></label>
+                                <input asp-for="Meal5Carb" class="form-control" />
+                                <span asp-validation-for="Meal5Carb" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Meal5CarbSize" class="control-label"></label>
+                                <input asp-for="Meal5CarbSize" class="form-control" />
+                                <span asp-validation-for="Meal5CarbSize" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-success mb-3" style="max-width: 100rem;">
+                    <div style="text-align:center" class="card-header">Meal 6</div>
+                    <div style="text-align:center" class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Meal6Time" class="control-label"></label>
+                            <input asp-for="Meal6Time" class="form-control" />
+                            <span asp-validation-for="Meal6Time" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal6Entree" class="control-label"></label>
+                            <input asp-for="Meal6Entree" class="form-control" />
+                            <span asp-validation-for="Meal6Entree" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal6EntreeSize" class="control-label"></label>
+                            <input asp-for="Meal6EntreeSize" class="form-control" />
+                            <span asp-validation-for="Meal6EntreeSize" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal6Vegetable" class="control-label"></label>
+                            <input asp-for="Meal6Vegetable" class="form-control" />
+                            <span asp-validation-for="Meal6Vegetable" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal6VegetableSize" class="control-label"></label>
+                            <input asp-for="Meal6VegetableSize" class="form-control" />
+                            <span asp-validation-for="Meal6VegetableSize" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal6Carb" class="control-label"></label>
+                            <input asp-for="Meal6Carb" class="form-control" />
+                            <span asp-validation-for="Meal6Carb" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Meal6CarbSize" class="control-label"></label>
+                            <input asp-for="Meal6CarbSize" class="form-control" />
+                            <span asp-validation-for="Meal6CarbSize" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card border-info mb-3" style="max-width: 100rem;">
+                    <div style="text-align:center" class="card-header">Snack 1</div>
+                    <div style="text-align:center" class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Snack1Time" class="control-label"></label>
+                            <input asp-for="Snack1Time" class="form-control" />
+                            <span asp-validation-for="Snack1Time" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Snack1" class="control-label"></label>
+                            <input asp-for="Snack1" class="form-control" />
+                            <span asp-validation-for="Snack1" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Snack1Size" class="control-label"></label>
+                            <input asp-for="Snack1Size" class="form-control" />
+                            <span asp-validation-for="Snack1Size" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="card border-info mb-3" style="max-width: 100rem;">
+                    <div style="text-align:center" class="card-header">Snack 2</div>
+                    <div style="text-align:center" class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Snack2Time" class="control-label"></label>
+                            <input asp-for="Snack2Time" class="form-control" />
+                            <span asp-validation-for="Snack2Time" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Snack2" class="control-label"></label>
+                            <input asp-for="Snack2" class="form-control" />
+                            <span asp-validation-for="Snack2" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Snack2Size" class="control-label"></label>
+                            <input asp-for="Snack2Size" class="form-control" />
+                            <span asp-validation-for="Snack2Size" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-info mb-3" style="max-width: 100rem;">
+                    <div style="text-align:center" class="card-header">Snack 3</div>
+                    <div style="text-align:center" class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Snack3Time" class="control-label"></label>
+                            <input asp-for="Snack3Time" class="form-control" />
+                            <span asp-validation-for="Snack3Time" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Snack3" class="control-label"></label>
+                            <input asp-for="Snack3" class="form-control" />
+                            <span asp-validation-for="Snack3" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Snack3Size" class="control-label"></label>
+                            <input asp-for="Snack3Size" class="form-control" />
+                            <span asp-validation-for="Snack3Size" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-light mb-3" style="max-width: 100rem;">
+                    <div style="text-align:center" class="card-header">Supplement 1</div>
+                    <div style="text-align:center" class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Supplement1" class="control-label"></label>
+                            <input asp-for="Supplement1" class="form-control" />
+                            <span asp-validation-for="Supplement1" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-light mb-3" style="max-width: 100rem;">
+                    <div style="text-align:center" class="card-header">Supplement 2</div>
+                    <div style="text-align:center" class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Supplement2" class="control-label"></label>
+                            <input asp-for="Supplement2" class="form-control" />
+                            <span asp-validation-for="Supplement2" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-light mb-3" style="max-width: 100rem;">
+                    <div style="text-align:center" class="card-header">Supplement 3</div>
+                    <div style="text-align:center" class="card-body">
+                        <div class="form-group">
+                            <label asp-for="Supplement3" class="control-label"></label>
+                            <input asp-for="Supplement3" class="form-control" />
+                            <span asp-validation-for="Supplement3" class="text-danger"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+
+    </form>
+    </div>
+
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

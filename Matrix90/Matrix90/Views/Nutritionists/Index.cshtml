@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Matrix90.Models.Customer>
+
+@{
+    var NutritionPlans = ViewBag.NutritionPlans;
+    List<Customer> newCustomers = ViewBag.NewCustomers;
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+
+<div><br /></div>
+<div style="text-align:center; "><img src="~/Images/logo.png" /></div>
+<div> <br /></div>
+
+
+
+
+
+<h2 style="text-align:center">New Customers</h2>
+<div><br/></div>
+@foreach (var item in newCustomers)
+{
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Customer</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Nutrition Plan Status</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr class="table-primary">
+                <th scope="row">@item.CustomerId</th>
+                <td>@item.FirstName @item.LastName</td>
+                
+                <td><a href="#" class="btn btn-warning" onclick="location.href='@Url.Action("ViewNewCustomer", "Nutritionists" , new { customerId = item.CustomerId})'">View Customer</a></td>
+
+            </tr>
+
+        </tbody>
+    </table>
+}
+
+<h2 style="text-align:center">Current Customers</h2>
+@foreach (var item in Model)
+{
+    if (newCustomers.Contains(item))
+    {
+    }
+    else
+    {
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Nutrition Plan Status</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr class="table-primary">
+                    <th scope="row">@item.CustomerId</th>
+                    <td>@item.FirstName @item.LastName</td>
+                    <td><a href="#" class="btn btn-warning" onclick="location.href='@Url.Action("ViewCustomer", "Nutritionists" , new { customerId = item.CustomerId})'">View Customer</a></td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    }
+}
+
+

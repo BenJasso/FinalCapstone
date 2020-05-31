@@ -1,0 +1,49 @@
+﻿@model Matrix90.Models.CustomerActivityInfo
+
+@{
+    ViewData["Title"] = "ViewCustomerActivityInfo";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h1>ViewCustomerActivityInfo</h1>
+
+<div>
+    <h4>CustomerActivityInfo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdentityUserId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdentityUserId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AccessToFacility)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AccessToFacility)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkoutRoutine)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WorkoutRoutine)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RoutineTimePerDay)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RoutineTimePerDay)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RoutineDaysAWeek)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RoutineDaysAWeek)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CustomerActivityInfoId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

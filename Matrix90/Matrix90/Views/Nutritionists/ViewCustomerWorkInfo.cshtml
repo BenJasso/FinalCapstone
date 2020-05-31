@@ -1,0 +1,73 @@
+﻿@model Matrix90.Models.CustomerWorkInfo
+
+@{
+    ViewData["Title"] = "ViewCustomerWorkInfo";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<h1>ViewCustomerWorkInfo</h1>
+
+<div>
+    <h4>CustomerWorkInfo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdentityUserId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdentityUserId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Occupation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Occupation)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Shift)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Shift)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkDays)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WorkDays)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DailyWorkHours)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DailyWorkHours)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ScheduledBreaks)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ScheduledBreaks)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.BringLunchAbility)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.BringLunchAbility)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ActivityLevel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ActivityLevel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AdditionalInfo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AdditionalInfo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CustomerWorkInfoId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
