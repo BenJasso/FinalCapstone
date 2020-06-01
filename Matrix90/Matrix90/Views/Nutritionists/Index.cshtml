@@ -14,98 +14,111 @@
 <div style="text-align:center; "><img src="~/Images/logo.png" /></div>
 <div> <br /></div>
 
-<div>@if (notificationsCount != 0)
-{<a href="#" onclick="location.href='@Url.Action("ViewNotifications", "Nutritionists", new { _notifications = Notifications})'">@notificationsCount Notifications</a>}</div>
+<div>
+    @if (notificationsCount != 0)
+    {
+        <a href="#" onclick="location.href='@Url.Action("ViewNotifications", "Nutritionists", new { _notifications = Notifications})'">@notificationsCount Notifications</a>
+    }
+</div>
 
 
-<form asp-action="Index">
-    <table>
-        <tr>
-            <td>
-                <label style="color:slategray" asp-for="@Model.LastName">Last Name</label>
-                <input asp-for="@Model.LastName" value="enter subject" class="form-control"></input>
-            </td>
 
-        </tr>
-    </table>
-
-    <button type="submit" class="btn btn-primary">Filter</button>
-</form>
-<div><br /></div>
-
-
-<h2 style="text-align:center">New Customers</h2>
-<div><br /></div>
-@if (newCustomers != null)
-{
-
-
-    @foreach (var item in newCustomers)
+<div class="jumbotron">
+    <h2 style="text-align:center">New Customers</h2>
+    <div><br /></div>
+    @if (newCustomers != null)
     {
 
 
-        <table class="table table-hover">
-            <thead>
+        @foreach (var item in newCustomers)
+        {
+
+
+
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Nutrition Plan Status</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr class="table-primary">
+                        <th scope="row">@item.CustomerId</th>
+                        <td>@item.FirstName @item.LastName</td>
+
+                        <td><a href="#" class="btn btn-warning" onclick="location.href='@Url.Action("ViewNewCustomer", "Nutritionists", new { customerId = item.CustomerId })'">View Customer</a></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        }
+    }
+    
+
+</div>
+
+<div class="row">
+    <div class="col-md-4"><p></p></div>
+    <div class="col-md-4">
+        <form style="text-align:center " asp-action="Index">
+            <table>
                 <tr>
-                    <th scope="col">Customer</th>
-                    <th scope="col">Customer Name</th>
-                    <th scope="col">Nutrition Plan Status</th>
+                    <td>
+                        <label style="color:slategray" asp-for="@Model.LastName">Last Name</label>
+                        <input asp-for="@Model.LastName" value="Enter Last Name" class="form-control"></input>
+                    </td>
 
                 </tr>
-            </thead>
-            <tbody>
+            </table>
 
-                <tr class="table-primary">
-                    <th scope="row">@item.CustomerId</th>
-                    <td>@item.FirstName @item.LastName</td>
-
-                    <td><a href="#" class="btn btn-warning" onclick="location.href='@Url.Action("ViewNewCustomer", "Nutritionists", new { customerId = item.CustomerId })'">View Customer</a></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-    }
-}
-else
-{
-  
-}
-
-<h2 style="text-align:center">Current Customers</h2>
+            <button type="submit" class="btn btn-primary">Filter</button>
+        </form>
+    </div>
+    <div class="col-md-4"><p></p></div>
+</div>
+<div><br /></div>
+<div class="jumbotron">
+    <h2 style="text-align:center">Current Customers</h2>
 
 
-@foreach (var item in Model.customers)
-{
-    if (newCustomers.Contains(item))
+    @foreach (var item in Model.customers)
     {
-           
+        if (newCustomers.Contains(item))
+        {
+
+        }
+
+        else
+        {
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Customer Name</th>
+                        <th scope="col">Nutrition Plan Status</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr class="table-primary">
+                        <th scope="row">@item.CustomerId</th>
+                        <td>@item.FirstName @item.LastName</td>
+                        <td><a href="#" class="btn btn-warning" onclick="location.href='@Url.Action("ViewCustomer", "Nutritionists", new { customerId = item.CustomerId })'">View Customer</a></td>
+
+                    </tr>
+
+                </tbody>
+            </table>
+        }
     }
-  
-    else
-    {
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Customer</th>
-                    <th scope="col">Customer Name</th>
-                    <th scope="col">Nutrition Plan Status</th>
-
-                </tr>
-            </thead>
-            <tbody>
-
-                <tr class="table-primary">
-                    <th scope="row">@item.CustomerId</th>
-                    <td>@item.FirstName @item.LastName</td>
-                    <td><a href="#" class="btn btn-warning" onclick="location.href='@Url.Action("ViewCustomer", "Nutritionists", new { customerId = item.CustomerId })'">View Customer</a></td>
-
-                </tr>
-
-            </tbody>
-        </table>
-    }
-}
+</div>
 
 
 

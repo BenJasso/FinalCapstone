@@ -12,6 +12,7 @@ namespace Matrix90.ViewModels
         public int RecipeId { get; set; }
         public string Type { get; set; }
         public string RecipeInfo { get; set; }
+        public string RecipeTitle { get; set; }
         public IFormFile RecipeImage { get; set; }
 
         public DateTime uploadDate { get; set; }

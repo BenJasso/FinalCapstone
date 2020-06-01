@@ -1,7 +1,7 @@
 ﻿@model Matrix90.Models.NutritionPlan
 
 @{
-    CustomerMeasurements Measurements = ViewBag.Measurements;
+    List<CustomerMeasurements> Measurements = ViewBag.Measurements;
     Customer customer = ViewBag.Customer;
     int customerId = ViewBag.CustomerId;
     ViewData["Title"] = "ViewCustomer";
@@ -58,7 +58,7 @@
 
     </div>
 
-    <h4 style="text-align:center">Starting Weight: @Measurements.StartingWeight  |  Current Weight: @Measurements.CurrentWeight  |  Goal Weight: @Measurements.GoalWeight</h4>
+    <h4 style="text-align:center">Starting Weight: @Measurements.First().StartingWeight  |  Current Weight: @Measurements.First().CurrentWeight  |  Goal Weight: @Measurements.First().GoalWeight</h4>
     <div class="progress">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
     </div>

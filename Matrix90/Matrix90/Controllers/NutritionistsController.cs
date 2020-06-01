@@ -62,6 +62,7 @@ namespace Matrix90.Controllers
                 }
             }
             ViewBag.NewCustomers = newCustomers;
+            ViewBag.Notifications = _context.Notifications.Where(n => n.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).ToList();
             Customers.OrderByDescending(x => x.LastName);
             CustomerViewModel temp = new CustomerViewModel();
             temp.customers = Customers.Where(c => c.LastName.ToLower() == filteredCustomers.LastName.ToLower()).ToList();
@@ -76,7 +77,13 @@ namespace Matrix90.Controllers
             ViewBag.CustomerId = customerId;
             Customer currentCustomer = _context.Customers.Where(c => c.CustomerId == customerId).SingleOrDefault();
             ViewBag.Customer = currentCustomer;
-            ViewBag.Measurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == currentCustomer.IdentityUserId).SingleOrDefault();
+            List<CustomerMeasurements> customerMeasurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == currentCustomer.IdentityUserId).ToList();
+            List<CustomerMeasurements> sortedMeasurements = customerMeasurements.OrderByDescending(x => x.uploadDate).ToList();
+            int weightDifference = sortedMeasurements.First().GoalWeight - sortedMeasurements.First().StartingWeight;
+            int weightProgress = sortedMeasurements.First().CurrentWeight - sortedMeasurements.First().StartingWeight;
+            double progressBarPercentage = (double)weightProgress / (double)weightDifference * 100.0;
+            ViewBag.progress = progressBarPercentage;
+            ViewBag.Measurements = sortedMeasurements;
             return View();
         }
 
@@ -104,7 +111,7 @@ namespace Matrix90.Controllers
             Customer currentCustomer = _context.Customers.Where(c => c.CustomerId == customerId).SingleOrDefault();
             NutritionPlan currentPlan = _context.NutritionPlans.Where(n => n.CustomerId == customerId).SingleOrDefault();
             ViewBag.Customer = currentCustomer;
-            ViewBag.Measurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == currentCustomer.IdentityUserId).SingleOrDefault();
+            ViewBag.Measurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == currentCustomer.IdentityUserId).ToList();
             return View(currentPlan);
         }
 
