@@ -111,7 +111,13 @@ namespace Matrix90.Controllers
             Customer currentCustomer = _context.Customers.Where(c => c.CustomerId == customerId).SingleOrDefault();
             NutritionPlan currentPlan = _context.NutritionPlans.Where(n => n.CustomerId == customerId).SingleOrDefault();
             ViewBag.Customer = currentCustomer;
-            ViewBag.Measurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == currentCustomer.IdentityUserId).ToList();
+            List<CustomerMeasurements> customerMeasurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == currentCustomer.IdentityUserId).ToList();
+            List<CustomerMeasurements> sortedMeasurements = customerMeasurements.OrderByDescending(x => x.uploadDate).ToList();
+            int weightDifference = sortedMeasurements.First().GoalWeight - sortedMeasurements.First().StartingWeight;
+            int weightProgress = sortedMeasurements.First().CurrentWeight - sortedMeasurements.First().StartingWeight;
+            double progressBarPercentage = (double)weightProgress / (double)weightDifference * 100.0;
+            ViewBag.Measurements = sortedMeasurements;
+            ViewBag.progress = progressBarPercentage;
             return View(currentPlan);
         }
 

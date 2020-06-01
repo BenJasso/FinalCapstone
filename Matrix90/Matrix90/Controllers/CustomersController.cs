@@ -556,16 +556,7 @@ namespace Matrix90.Controllers
             return View(measurements);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateMeasurements(CustomerMeasurements newMeasurements)
-        {
-            Customer current = _context.Customers.Where(c => c.IdentityUserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).SingleOrDefault();
-            newMeasurements.uploadDate = DateTime.Now;
-            newMeasurements.IdentityUserId = current.IdentityUserId;
-            _context.CustomerMeasurementss.Add(newMeasurements);
-            
-            return RedirectToAction(nameof(Index));
-        }
+        
 
         public async Task<IActionResult> Favorites()
         {
@@ -582,6 +573,18 @@ namespace Matrix90.Controllers
                 
             }
             return View(tips);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateMeasurements(CustomerMeasurements newMeasurements)
+        {
+            CustomerMeasurements NewMeasurement = newMeasurements;
+           
+            NewMeasurement.uploadDate = DateTime.Now;
+            NewMeasurement.IdentityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            _context.CustomerMeasurementss.Add(NewMeasurement);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }
