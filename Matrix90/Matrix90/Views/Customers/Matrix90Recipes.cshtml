@@ -1,15 +1,54 @@
-﻿@model List<Recipe> 
+﻿@model Matrix90.ViewModels.RecipeViewModel
 
 @{
     ViewData["Title"] = "Matrix90Recipes";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
 
-<h1>Details</h1>
+<div><br /></div>
+<div style="text-align:center; "><img src="~/Images/logo.png" /></div>
+<div> <br /></div>
 
-<div>
-    
+
+<h1 class="display-3" style="text-align:center">Featured Recipe</h1>
+<div><br /></div>
+
+<div style="border:double">
+<div style="height:300px; background-image:url('/Images/@Model.recipes.Last().RecipeImage')"></div>
+<div class="jumbotron" >
+
+    <h1 class="display-3">@Model.recipes.Last().RecipeTitle</h1>
+    <h3>Subject: @Model.recipes.Last().Type</h3>
+    <div><br /></div>
+    <p>@Model.recipes.Last().RecipeInfo</p>
+
 </div>
-<div>
-    
-</div>
+    </div>
+
+<form asp-action="Matrix90Tips">
+    <table>
+        <tr>
+            <td>
+                
+                <label style="color:slategray" asp-for="@Model.subject">Subject</label>
+                <input asp-for="@Model.subject" value="enter subject" class="form-control"></input>
+            </td>
+
+        </tr>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+<div><br /></div>
+
+@foreach (var item in Model.recipes)
+{
+    <div class="card text-white bg-primary mb-3" style="max-width: 200rem;">
+        <div class="card-header">@item.RecipeTitle</div>
+        <div class="card-body">
+            <h4 class="card-title">@item.Type</h4>
+            <p class="card-text">@item.RecipeInfo</p>
+        </div>
+    </div>
+}
+

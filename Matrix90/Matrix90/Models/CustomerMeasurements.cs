@@ -25,5 +25,7 @@ namespace Matrix90.Models
         public int Thigh { get; set; }
         public int Calves { get; set; }
 
+        public DateTime uploadDate { get; set; }
+
     }
 }

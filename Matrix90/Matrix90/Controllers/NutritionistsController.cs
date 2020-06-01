@@ -32,6 +32,8 @@ namespace Matrix90.Controllers
             ViewBag.NutritionPlans = _context.NutritionPlans.ToList();
             List<Customer> newCustomers = new List<Customer>();
             var customers = _context.Customers.ToList();
+            CustomerViewModel temp = new CustomerViewModel();
+            temp.customers = customers;
             foreach(var item in customers)
             {
                 if(_context.NutritionPlans.Where(n=> n.CustomerId == item.CustomerId).SingleOrDefault() == null)
@@ -40,9 +42,33 @@ namespace Matrix90.Controllers
                 }
             }
             ViewBag.NewCustomers = newCustomers;
-           
-            return View(customers);
+            ViewBag.Notifications = _context.Notifications.Where(n => n.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).ToList();
+
+
+            return View(temp);
         }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Index(CustomerViewModel filteredCustomers)
+        {
+            List<Customer> Customers = _context.Customers.ToList();
+            List<Customer> newCustomers = new List<Customer>();
+            foreach (var item in Customers)
+            {
+                if (_context.NutritionPlans.Where(n => n.CustomerId == item.CustomerId).SingleOrDefault() == null)
+                {
+                    newCustomers.Add(item);
+                }
+            }
+            ViewBag.NewCustomers = newCustomers;
+            Customers.OrderByDescending(x => x.LastName);
+            CustomerViewModel temp = new CustomerViewModel();
+            temp.customers = Customers.Where(c => c.LastName.ToLower() == filteredCustomers.LastName.ToLower()).ToList();
+            return View(temp);
+        }
+
+
 
         [HttpGet]
         public async Task<IActionResult> ViewNewCustomer(int customerId)
@@ -58,7 +84,15 @@ namespace Matrix90.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ViewNewCustomer(NutritionPlan newPlan)
         {
+            Notification notification = new Notification();
+            Customer current = _context.Customers.Where(c => c.CustomerId == newPlan.CustomerId).SingleOrDefault();
+            notification.Id = current.IdentityUserId;
+            notification.notificationInfo = "Your customized nutritrion plan is now completed";
+            notification.controllerAction = "CustomerNutritionPlan";
+            _context.Notifications.Add(notification);
+
             _context.NutritionPlans.Add(newPlan);
+           
             _context.SaveChanges();
             return RedirectToAction("ViewCustomer", new { customerId = newPlan.CustomerId });
         }
@@ -78,6 +112,11 @@ namespace Matrix90.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ViewCustomer(NutritionPlan newPlan)
         {
+            Notification notification = new Notification();
+            Customer current = _context.Customers.Where(c => c.CustomerId == newPlan.CustomerId).SingleOrDefault();
+            notification.Id = current.IdentityUserId;
+            notification.controllerAction = "CustomerNutritionPlan";
+            notification.notificationInfo = "Your customized nutritrion plan has been updated";
             NutritionPlan currentNP = _context.NutritionPlans.Where(n => n.CustomerId == newPlan.CustomerId).SingleOrDefault();
 
             currentNP.CustomerId = newPlan.CustomerId;
@@ -135,6 +174,7 @@ namespace Matrix90.Controllers
             currentNP.Supplement1 = newPlan.Supplement1;
             currentNP.Supplement2 = newPlan.Supplement2;
             currentNP.Supplement3 = newPlan.Supplement3;
+            _context.Notifications.Add(notification);
             _context.SaveChanges();
             return RedirectToAction("ViewCustomer", new { customerId = newPlan.CustomerId });
         }
@@ -195,6 +235,19 @@ namespace Matrix90.Controllers
             try
             {
                 // TODO: Add insert logic here
+                
+                
+                
+                var customers = _context.Customers.ToList();
+                foreach(var item in customers)
+                {
+                    Notification notification = new Notification();
+                    notification.Id = item.IdentityUserId;
+                    notification.notificationInfo = "A new Matrix90 has been added.";
+                    notification.controllerAction = "Matrix90Tips";
+                    _context.Notifications.Add(notification);
+                    _context.SaveChanges();
+                }
                 newTip.uploadDate = DateTime.Now;
                 _context.TipOfWeeks.Add(newTip);
                 _context.SaveChanges();
@@ -219,6 +272,16 @@ namespace Matrix90.Controllers
         {
             try
             {
+                var customers = _context.Customers.ToList();
+                foreach (var item in customers)
+                {
+                    Notification notification = new Notification();
+                    notification.Id = item.IdentityUserId;
+                    notification.notificationInfo = "A new Matrix90 recipe has been added.";
+                    notification.controllerAction = "Matrix90Recipes";
+                    _context.Notifications.Add(notification);
+                    _context.SaveChanges();
+                }
                 string RecipeFileName = null;
                 if (model.RecipeImage != null)
                 {
@@ -288,6 +351,24 @@ namespace Matrix90.Controllers
             {
                 return View();
             }
+        }
+
+        public async Task<IActionResult> RemoveNotification(Notification notification)
+        {
+            int _customerId = _context.Customers.Where(c => c.IdentityUserId == notification.Id).SingleOrDefault().CustomerId;
+            string controllerAction = notification.controllerAction;
+            _context.Notifications.Remove(notification);
+            _context.SaveChanges();
+
+            if (notification.controllerAction == "ViewNewCustomer")
+            {
+                return RedirectToAction(controllerAction, _customerId);
+            }
+            else
+            {
+                return RedirectToAction(controllerAction);
+            }
+
         }
     }
 }

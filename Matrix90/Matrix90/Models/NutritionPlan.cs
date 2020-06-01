@@ -15,7 +15,7 @@ namespace Matrix90.Models
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
         [AllowNull]
-        public double Meal1Time { get; set; }
+        public string Meal1Time { get; set; }
         [AllowNull]
         public string Meal1Entree { get; set; }
         [AllowNull]
@@ -29,7 +29,7 @@ namespace Matrix90.Models
         [AllowNull]
         public int Meal1CarbSize { get; set; }
         [AllowNull]
-        public double Meal2Time { get; set; }
+        public string Meal2Time { get; set; }
         [AllowNull]
         public string Meal2Entree { get; set; }
         [AllowNull]
@@ -43,7 +43,7 @@ namespace Matrix90.Models
         [AllowNull]
         public int Meal2CarbSize { get; set; }
         [AllowNull]
-        public double Meal3Time { get; set; }
+        public string Meal3Time { get; set; }
         [AllowNull]
         public string Meal3Entree { get; set; }
         [AllowNull]
@@ -57,7 +57,7 @@ namespace Matrix90.Models
         [AllowNull]
         public int Meal3CarbSize { get; set; }
         [AllowNull]
-        public double Meal4Time { get; set; }
+        public string Meal4Time { get; set; }
         [AllowNull]
         public string Meal4Entree { get; set; }
         [AllowNull]
@@ -71,7 +71,7 @@ namespace Matrix90.Models
         [AllowNull]
         public int Meal4CarbSize { get; set; }
         [AllowNull]
-        public double Meal5Time { get; set; }
+        public string Meal5Time { get; set; }
         [AllowNull]
         public string Meal5Entree { get; set; }
         [AllowNull]
@@ -85,7 +85,7 @@ namespace Matrix90.Models
         [AllowNull]
         public int Meal5CarbSize { get; set; }
         [AllowNull]
-        public double Meal6Time { get; set; }
+        public string Meal6Time { get; set; }
         [AllowNull]
         public string Meal6Entree { get; set; }
         [AllowNull]
@@ -99,19 +99,19 @@ namespace Matrix90.Models
         [AllowNull]
         public int Meal6CarbSize { get; set; }
         [AllowNull]
-        public double Snack1Time { get; set; }
+        public string Snack1Time { get; set; }
         [AllowNull]
         public string Snack1 { get; set; }
         [AllowNull]
         public int Snack1Size { get; set; }
         [AllowNull]
-        public double Snack2Time { get; set; }
+        public string Snack2Time { get; set; }
         [AllowNull]
         public string Snack2 { get; set; }
         [AllowNull]
         public int Snack2Size { get; set; }
         [AllowNull]
-        public double Snack3Time { get; set; }
+        public string Snack3Time { get; set; }
         [AllowNull]
         public string Snack3 { get; set; }
         [AllowNull]

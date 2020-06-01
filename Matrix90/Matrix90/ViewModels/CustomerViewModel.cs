@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Matrix90.Models;
 
 namespace Matrix90.ViewModels
 {
@@ -23,6 +24,8 @@ namespace Matrix90.ViewModels
         public IFormFile BackImage { get; set; }
         public IFormFile ProfileRight { get; set; }
         public IFormFile ProfileLeft { get; set; }
+
+        public List<Customer> customers { get; set; }
 
 
 

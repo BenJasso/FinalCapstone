@@ -51,6 +51,8 @@ namespace Matrix90.Data
         public DbSet<TipOfWeek> TipOfWeeks { get; set; }
         public DbSet<Image> Images { get; set; }
 
+        public DbSet<Notification> Notifications { get; set; }
+
         
 
     }

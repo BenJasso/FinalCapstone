@@ -1,0 +1,40 @@
+﻿@model List<Matrix90.Models.Notification>
+@{
+    ViewData["Title"] = "ViewNotifications";
+    Layout = "~/Views/Shared/_NutritionistsLayout.cshtml";
+}
+
+<h1>View Notifications</h1>
+
+<h1>Notifications</h1>
+
+<div>
+    <h4>Notifications</h4>
+    <hr />
+    @foreach (var item in Model)
+    {
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Notification</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr class="table-primary">
+
+                    <td><a href="#" onclick="location.href='@Url.Action("RemoveNotification", "Nutritionists", new { notification = item })'">@item.notificationInfo</a></td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    }
+
+</div>
+<div>
+    
+    <a asp-action="Index">Back to List</a>
+</div>

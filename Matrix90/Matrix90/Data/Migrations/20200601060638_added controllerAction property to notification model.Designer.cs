@@ -4,14 +4,16 @@ using Matrix90.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Matrix90.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200601060638_added controllerAction property to notification model")]
+    partial class addedcontrollerActionpropertytonotificationmodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,9 +198,6 @@ namespace Matrix90.Data.Migrations
                     b.Property<int>("Waist")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("uploadDate")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("CustomerMeasurementsId");
 
                     b.ToTable("CustomerMeasurementss");
@@ -262,14 +261,14 @@ namespace Matrix90.Data.Migrations
                     b.Property<string>("AdditionalInfo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("BedTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("BedTime")
+                        .HasColumnType("float");
 
-                    b.Property<string>("BreakfastTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("BreakfastTime")
+                        .HasColumnType("float");
 
-                    b.Property<string>("DinnerTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("DinnerTime")
+                        .HasColumnType("float");
 
                     b.Property<bool>("EatingTimeFlexibility")
                         .HasColumnType("bit");
@@ -277,8 +276,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<string>("IdentityUserId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LunchTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("LunchTime")
+                        .HasColumnType("float");
 
                     b.Property<int>("NightlyWakeUps")
                         .HasColumnType("int");
@@ -292,8 +291,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<double>("SnackDuringDayTimes")
                         .HasColumnType("float");
 
-                    b.Property<string>("WakeUpTime")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("WakeUpTime")
+                        .HasColumnType("float");
 
                     b.HasKey("CustomerTypicalDayInfoId");
 
@@ -415,8 +414,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<int>("Meal1EntreeSize")
                         .HasColumnType("int");
 
-                    b.Property<string>("Meal1Time")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Meal1Time")
+                        .HasColumnType("float");
 
                     b.Property<string>("Meal1Vegetable")
                         .HasColumnType("nvarchar(max)");
@@ -436,8 +435,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<int>("Meal2EntreeSize")
                         .HasColumnType("int");
 
-                    b.Property<string>("Meal2Time")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Meal2Time")
+                        .HasColumnType("float");
 
                     b.Property<string>("Meal2Vegetable")
                         .HasColumnType("nvarchar(max)");
@@ -457,8 +456,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<int>("Meal3EntreeSize")
                         .HasColumnType("int");
 
-                    b.Property<string>("Meal3Time")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Meal3Time")
+                        .HasColumnType("float");
 
                     b.Property<string>("Meal3Vegetable")
                         .HasColumnType("nvarchar(max)");
@@ -478,8 +477,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<int>("Meal4EntreeSize")
                         .HasColumnType("int");
 
-                    b.Property<string>("Meal4Time")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Meal4Time")
+                        .HasColumnType("float");
 
                     b.Property<string>("Meal4Vegetable")
                         .HasColumnType("nvarchar(max)");
@@ -499,8 +498,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<int>("Meal5EntreeSize")
                         .HasColumnType("int");
 
-                    b.Property<string>("Meal5Time")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Meal5Time")
+                        .HasColumnType("float");
 
                     b.Property<string>("Meal5Vegetable")
                         .HasColumnType("nvarchar(max)");
@@ -520,8 +519,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<int>("Meal6EntreeSize")
                         .HasColumnType("int");
 
-                    b.Property<string>("Meal6Time")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Meal6Time")
+                        .HasColumnType("float");
 
                     b.Property<string>("Meal6Vegetable")
                         .HasColumnType("nvarchar(max)");
@@ -535,8 +534,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<int>("Snack1Size")
                         .HasColumnType("int");
 
-                    b.Property<string>("Snack1Time")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Snack1Time")
+                        .HasColumnType("float");
 
                     b.Property<string>("Snack2")
                         .HasColumnType("nvarchar(max)");
@@ -544,8 +543,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<int>("Snack2Size")
                         .HasColumnType("int");
 
-                    b.Property<string>("Snack2Time")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Snack2Time")
+                        .HasColumnType("float");
 
                     b.Property<string>("Snack3")
                         .HasColumnType("nvarchar(max)");
@@ -553,8 +552,8 @@ namespace Matrix90.Data.Migrations
                     b.Property<int>("Snack3Size")
                         .HasColumnType("int");
 
-                    b.Property<string>("Snack3Time")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double>("Snack3Time")
+                        .HasColumnType("float");
 
                     b.Property<string>("Supplement1")
                         .HasColumnType("nvarchar(max)");
@@ -607,9 +606,6 @@ namespace Matrix90.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RecipeInfo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RecipeTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
@@ -676,15 +672,15 @@ namespace Matrix90.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b2cbf369-d443-464f-b066-152498bcd0ae",
-                            ConcurrencyStamp = "04961ebc-4cbc-43f2-977b-28b4e87eeb0f",
+                            Id = "0df8b803-c737-4b85-bc52-df37eed2dd1c",
+                            ConcurrencyStamp = "bd7a4ede-6975-48a2-b2e3-b704b4ae4192",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "81886ccb-9cdc-424d-b16d-60e7436af45b",
-                            ConcurrencyStamp = "b8798c2b-d8bc-425e-9aa3-bfd42d53c29e",
+                            Id = "4b26361d-4cc4-41c3-8c92-e7df780f0b30",
+                            ConcurrencyStamp = "40dbbbd4-adea-4eb1-aea9-b3a75700968e",
                             Name = "Nutritionist",
                             NormalizedName = "NUTRITIONIST"
                         });

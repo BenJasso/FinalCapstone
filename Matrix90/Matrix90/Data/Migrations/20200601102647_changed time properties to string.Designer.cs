@@ -4,14 +4,16 @@ using Matrix90.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Matrix90.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200601102647_changed time properties to string")]
+    partial class changedtimepropertiestostring
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -609,9 +611,6 @@ namespace Matrix90.Data.Migrations
                     b.Property<string>("RecipeInfo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RecipeTitle")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
@@ -676,15 +675,15 @@ namespace Matrix90.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "b2cbf369-d443-464f-b066-152498bcd0ae",
-                            ConcurrencyStamp = "04961ebc-4cbc-43f2-977b-28b4e87eeb0f",
+                            Id = "9922fddd-4242-47d0-a6e3-539510285ce5",
+                            ConcurrencyStamp = "d3e1a91e-635c-4926-a775-b5bf96762ced",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
-                            Id = "81886ccb-9cdc-424d-b16d-60e7436af45b",
-                            ConcurrencyStamp = "b8798c2b-d8bc-425e-9aa3-bfd42d53c29e",
+                            Id = "6e777883-6188-4c43-9202-da2a2457b0b7",
+                            ConcurrencyStamp = "539a5c52-a37d-422d-8281-0ef24dd9764a",
                             Name = "Nutritionist",
                             NormalizedName = "NUTRITIONIST"
                         });

@@ -5,54 +5,62 @@
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
 
-<h1>My Activity Info</h1>
+<div><br /></div>
+<div class="container" style="text-align:center; "><img src="~/Images/logo.png" /></div>
+<div> <br /></div>
+<div class="jumbotron">
+    <h1 style="text-align:center">My Activity Info</h1>
 
-<h4>Please fill out the form to the best of your ability.</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateCustomerActivityInfo">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-          
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="AccessToFacility" /> Check box if you have access to a facility.
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="WorkoutRoutine" />Check box if you have a current workout routine.
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="RoutineTimePerDay" class="control-label">If you have one, how long is your routine?(minutes)</label>
-                <input asp-for="RoutineTimePerDay" class="form-control" />
-                <span asp-validation-for="RoutineTimePerDay" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RoutineDaysAWeek" class="control-label">If any, how many days a week do you do your routine?</label>
-                <select asp-for="RoutineDaysAWeek">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                </select>
-                <span asp-validation-for="RoutineDaysAWeek" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <h4 style="text-align:center">Please fill out the form to the best of your ability.</h4>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-4"><p></p></div>
+        <div class="col-md-4">
+            <form style="text-align:center" asp-action="CreateCustomerActivityInfo">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="AccessToFacility" /> Check box if you have access to a facility.
+                    </label>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="WorkoutRoutine" />Check box if you have a current workout routine.
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RoutineTimePerDay" class="control-label">If you have one, how long is your routine?(minutes)</label>
+                    <input asp-for="RoutineTimePerDay" class="form-control" />
+                    <span asp-validation-for="RoutineTimePerDay" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RoutineDaysAWeek" class="control-label">If any, how many days a week do you do your routine?</label>
+                    <select asp-for="RoutineDaysAWeek">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                    </select>
+                    <span asp-validation-for="RoutineDaysAWeek" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4"><p></p></div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

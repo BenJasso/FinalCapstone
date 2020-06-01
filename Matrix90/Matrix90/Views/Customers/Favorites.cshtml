@@ -1,0 +1,41 @@
+﻿@model List<TipOfWeek>
+
+@{
+    
+  
+    ViewData["Title"] = "Favorites";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<div><br /></div>
+<div style="text-align:center; "><img src="~/Images/logo.png" /></div>
+<div> <br /></div>
+
+
+<h1 style="text-align:center">My Favorite Tips</h1>
+<div><br /></div>
+@if (Model.Count == 0)
+{
+    <div class="jumbotron"><p>You have no favorites.</p></div>
+}
+else
+{
+
+
+
+@foreach (var item in Model)
+{
+
+
+    <div class="jumbotron">
+
+        <h1 class="display-3">@item.TipTitle</h1>
+        <h3>Subject: @item.SubjectName</h3>
+        <div><br /></div>
+        <p>@item.Tip</p>
+
+    </div>
+}
+}
+
+
+

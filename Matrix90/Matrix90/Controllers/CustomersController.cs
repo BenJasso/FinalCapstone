@@ -39,7 +39,7 @@ namespace Matrix90.Controllers
             {
                 return View("CreateCustomer");
             }
-            else if(_context.CustomerMeasurementss.Where(c=> c.IdentityUserId == UserId).SingleOrDefault() == null)
+            else if(_context.CustomerMeasurementss.Where(c=> c.IdentityUserId == UserId).ToList().Count() == 0)
             {
                 return View("CreateCustomerMeasurements");
             }
@@ -63,13 +63,35 @@ namespace Matrix90.Controllers
             {
                 return View("CreateCustomerMedicalInfo");
             }
-            var measurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == UserId).SingleOrDefault();
-            int weightDifference = measurements.GoalWeight - measurements.StartingWeight;
-            int weightProgress = measurements.CurrentWeight - measurements.StartingWeight;
+            List<CustomerMeasurements> measurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == UserId).ToList();
+
+
+    
+            List<CustomerMeasurements> sortedMeasurements = measurements.OrderByDescending(x => x.uploadDate).ToList();
+            DateTime d1 = sortedMeasurements.First().uploadDate;
+            DateTime d2 = DateTime.Now;
+            TimeSpan difference = d2 - d1;
+            
+            if(difference.TotalDays > 7)
+            {
+                if(measurements.First().uploadDate != DateTime.Today)
+                {
+                    Notification notification = new Notification();
+                    notification.controllerAction = "UpdateMeasurements";
+                    notification.Id = Customer.IdentityUserId;
+                    notification.notificationInfo = "Its time for your weekly measurements update!! Please Update!";
+                    _context.Notifications.Add(notification);
+                    _context.SaveChanges();
+                }
+                
+            }
+            int weightDifference = sortedMeasurements.First().GoalWeight - sortedMeasurements.First().StartingWeight;
+            int weightProgress = sortedMeasurements.First().CurrentWeight - sortedMeasurements.First().StartingWeight;
             double progressBarPercentage = (double)weightProgress / (double)weightDifference * 100.0;
+            ViewBag.Notifications = _context.Notifications.Where(n=> n.Id == Customer.IdentityUserId).ToList();
             ViewBag.progress = progressBarPercentage;
             ViewBag.NutritrtionPlan = _context.NutritionPlans.Where(n => n.CustomerId == Customer.CustomerId).SingleOrDefault();
-            ViewBag.Measurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == UserId).SingleOrDefault();
+            ViewBag.Measurements = sortedMeasurements;
 
             return View(Customer);
         }
@@ -290,7 +312,7 @@ namespace Matrix90.Controllers
             CustomerMeasurements temp = new CustomerMeasurements
             {
                 StartingWeight = model.StartingWeight,
-                CurrentWeight = model.CurrentWeight,
+                CurrentWeight = model.StartingWeight,
                 GoalWeight = model.GoalWeight,
                 Height = model.Height,
                 Arms = model.Arms,
@@ -298,9 +320,11 @@ namespace Matrix90.Controllers
                 Hips = model.Hips,
                 Neck = model.Neck,
                 Chest = model.Chest,
-                Thigh= model.Thigh,
+                Thigh = model.Thigh,
                 Calves = model.Calves,
-                IdentityUserId = userId
+                IdentityUserId = userId,
+                uploadDate = DateTime.Now
+                
             };
 
             _context.CustomerMeasurementss.Add(temp);
@@ -406,6 +430,19 @@ namespace Matrix90.Controllers
                AdditionalInfo = model.AdditionalInfo
 
             };
+            Customer current = _context.Customers.Where(c => c.IdentityUserId == model.IdentityUserId).SingleOrDefault();
+            var nutritionists = _context.Nutritionists.ToList();
+            foreach(var item in nutritionists)
+            {
+                Notification notification = new Notification();
+                notification.Id = item.IdentityUserId;
+                notification.notificationInfo = $"{current.FirstName} {current.LastName} completed the forms and is ready for a customized nutrition plan.";
+                notification.controllerAction = "ViewNewCustomer";
+                _context.Notifications.Add(notification);
+            }
+
+            
+          
 
             _context.CustomerMedicalInfos.Add(temp);
             _context.SaveChanges();
@@ -424,10 +461,31 @@ namespace Matrix90.Controllers
 
         [HttpGet]
 
-        public async Task<IActionResult> Martix90Tips()
+        public async Task<IActionResult> Matrix90Tips()
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Customer current = _context.Customers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
             List<TipOfWeek> Tips = _context.TipOfWeeks.ToList();
-            return View(Tips);
+            Tips.OrderByDescending(x => x.uploadDate);
+            TipOfWeekViewModel temp = new TipOfWeekViewModel();
+            temp.tips = Tips.ToList();
+            ViewBag.FavoriteTips = _context.FavoriteTips.Where(f => f.CustomerId == current.CustomerId).ToList();
+            ViewBag.CustomerId = current.CustomerId;
+            return View(temp);
+        }
+        [HttpPost]
+
+        public async Task<IActionResult> Matrix90Tips(TipOfWeekViewModel _tips)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            Customer current = _context.Customers.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            List<TipOfWeek> Tips = _context.TipOfWeeks.ToList();
+            Tips.OrderByDescending(x => x.uploadDate);
+            TipOfWeekViewModel temp = new TipOfWeekViewModel();
+            temp.tips = Tips.Where(t => t.SubjectName == _tips.subject).ToList();
+            ViewBag.FavoriteTips = _context.FavoriteTips.Where(f => f.CustomerId == current.CustomerId).ToList();
+            ViewBag.CustomerId = current.CustomerId;
+            return View(temp);
         }
 
         [HttpGet]
@@ -435,7 +493,96 @@ namespace Matrix90.Controllers
         public async Task<IActionResult> Matrix90Recipes()
         {
             List<Recipe> Recipes = _context.Recipes.ToList();
-            return View(Recipes);
+            Recipes.OrderByDescending(x => x.uploadDate);
+            RecipeViewModel temp = new RecipeViewModel();
+            temp.recipes = Recipes.ToList();
+
+            return View(temp);
         }
+
+        [HttpPost]
+
+        public async Task<IActionResult> Matrix90Recipes(RecipeViewModel _recipes)
+        {
+            List<Recipe> Recipes = _context.Recipes.ToList();
+            Recipes.OrderByDescending(x => x.uploadDate);
+            RecipeViewModel temp = new RecipeViewModel();
+            temp.recipes = Recipes.Where(t => t.Type == _recipes.subject).ToList();
+            return View(temp);
+        }
+
+        [HttpGet]
+
+        public async Task<IActionResult> AddFavoriteTip(int CustomerId, int TipId)
+        {
+            FavoriteTip newFavoriteTip = new FavoriteTip();
+            newFavoriteTip.TipOfWeekId = TipId;
+            newFavoriteTip.CustomerId = CustomerId;
+            _context.FavoriteTips.Add(newFavoriteTip);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Matrix90Tips));
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> RemoveFavoriteTip(int CustomerId, int TipId)
+        {
+            FavoriteTip newFavoriteTip = _context.FavoriteTips.Where(t => t.CustomerId == CustomerId && t.TipOfWeekId == TipId).SingleOrDefault();
+          
+            _context.FavoriteTips.Remove(newFavoriteTip);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Matrix90Tips));
+        }
+
+        public async Task<IActionResult> ViewNotifications(List<Notification> notifications)
+        {
+            List<Notification> _notifications = _context.Notifications.Where(n => n.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)).ToList();
+            return View(_notifications);
+        }
+
+        public async Task<IActionResult> RemoveNotification(int notificationId)
+        {
+            Notification currentNotification = _context.Notifications.Where(n => n.notificationId == notificationId).SingleOrDefault();
+            string controllerAction = currentNotification.controllerAction;
+            _context.Notifications.Remove(currentNotification);
+            _context.SaveChanges();
+            return RedirectToAction(controllerAction);
+        }
+
+        public async Task<IActionResult> UpdateMeasurements()
+        {
+            Customer current = _context.Customers.Where(c => c.IdentityUserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).SingleOrDefault();
+            CustomerMeasurements measurements = _context.CustomerMeasurementss.Where(m => m.IdentityUserId == current.IdentityUserId).SingleOrDefault();
+            return View(measurements);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateMeasurements(CustomerMeasurements newMeasurements)
+        {
+            Customer current = _context.Customers.Where(c => c.IdentityUserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).SingleOrDefault();
+            newMeasurements.uploadDate = DateTime.Now;
+            newMeasurements.IdentityUserId = current.IdentityUserId;
+            _context.CustomerMeasurementss.Add(newMeasurements);
+            
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Favorites()
+        {
+            Customer current = _context.Customers.Where(c => c.IdentityUserId == User.FindFirstValue(ClaimTypes.NameIdentifier)).SingleOrDefault();
+            List<FavoriteTip> favoriteTips = _context.FavoriteTips.Where(t => t.CustomerId == current.CustomerId).ToList();
+            List<TipOfWeek> tips = new List<TipOfWeek>();
+            foreach(var item in favoriteTips)
+            {
+                TipOfWeek tip = _context.TipOfWeeks.Where(t=> t.TipOfWeekId == item.TipOfWeekId).SingleOrDefault();
+                if(tip != null)
+                {
+                    tips.Add(tip);
+                }
+                
+            }
+            return View(tips);
+        }
+
     }
 }

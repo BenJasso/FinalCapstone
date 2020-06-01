@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Matrix90.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,8 @@ namespace Matrix90.ViewModels
         public IFormFile RecipeImage { get; set; }
 
         public DateTime uploadDate { get; set; }
+        public List<Recipe> recipes { get; set; }
+        public string subject { get; set; }
+
     }
 }

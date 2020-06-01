@@ -1,6 +1,8 @@
-﻿@model IEnumerable<Matrix90.Models.Customer>
+﻿@model Matrix90.ViewModels.CustomerViewModel
 
 @{
+    List<Notification> Notifications = ViewBag.Notifications;
+    int notificationsCount = Notifications.Count;
     var NutritionPlans = ViewBag.NutritionPlans;
     List<Customer> newCustomers = ViewBag.NewCustomers;
     ViewData["Title"] = "Index";
@@ -12,45 +14,74 @@
 <div style="text-align:center; "><img src="~/Images/logo.png" /></div>
 <div> <br /></div>
 
+<div>@if (notificationsCount != 0)
+{<a href="#" onclick="location.href='@Url.Action("ViewNotifications", "Nutritionists", new { _notifications = Notifications})'">@notificationsCount Notifications</a>}</div>
 
 
+<form asp-action="Index">
+    <table>
+        <tr>
+            <td>
+                <label style="color:slategray" asp-for="@Model.LastName">Last Name</label>
+                <input asp-for="@Model.LastName" value="enter subject" class="form-control"></input>
+            </td>
+
+        </tr>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+<div><br /></div>
 
 
 <h2 style="text-align:center">New Customers</h2>
-<div><br/></div>
-@foreach (var item in newCustomers)
+<div><br /></div>
+@if (newCustomers != null)
 {
 
 
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th scope="col">Customer</th>
-                <th scope="col">Customer Name</th>
-                <th scope="col">Nutrition Plan Status</th>
+    @foreach (var item in newCustomers)
+    {
 
-            </tr>
-        </thead>
-        <tbody>
 
-            <tr class="table-primary">
-                <th scope="row">@item.CustomerId</th>
-                <td>@item.FirstName @item.LastName</td>
-                
-                <td><a href="#" class="btn btn-warning" onclick="location.href='@Url.Action("ViewNewCustomer", "Nutritionists" , new { customerId = item.CustomerId})'">View Customer</a></td>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Nutrition Plan Status</th>
 
-            </tr>
+                </tr>
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
+                <tr class="table-primary">
+                    <th scope="row">@item.CustomerId</th>
+                    <td>@item.FirstName @item.LastName</td>
+
+                    <td><a href="#" class="btn btn-warning" onclick="location.href='@Url.Action("ViewNewCustomer", "Nutritionists", new { customerId = item.CustomerId })'">View Customer</a></td>
+
+                </tr>
+
+            </tbody>
+        </table>
+    }
+}
+else
+{
+  
 }
 
 <h2 style="text-align:center">Current Customers</h2>
-@foreach (var item in Model)
+
+
+@foreach (var item in Model.customers)
 {
     if (newCustomers.Contains(item))
     {
+           
     }
+  
     else
     {
         <table class="table table-hover">
@@ -67,7 +98,7 @@
                 <tr class="table-primary">
                     <th scope="row">@item.CustomerId</th>
                     <td>@item.FirstName @item.LastName</td>
-                    <td><a href="#" class="btn btn-warning" onclick="location.href='@Url.Action("ViewCustomer", "Nutritionists" , new { customerId = item.CustomerId})'">View Customer</a></td>
+                    <td><a href="#" class="btn btn-warning" onclick="location.href='@Url.Action("ViewCustomer", "Nutritionists", new { customerId = item.CustomerId })'">View Customer</a></td>
 
                 </tr>
 
@@ -75,5 +106,6 @@
         </table>
     }
 }
+
 
 

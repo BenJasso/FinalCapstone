@@ -14,6 +14,7 @@ namespace Matrix90.Models
         public string Type { get; set; }
         public string RecipeInfo { get; set; }
         public string RecipeImage { get; set; }
+        public string RecipeTitle { get; set; }
 
         public DateTime uploadDate { get; set; }
 

@@ -1,0 +1,62 @@
+﻿@model TipOfWeekViewModel
+
+@{
+    int customerId = ViewBag.CustomerId;
+    List<FavoriteTip> favoriteTips = ViewBag.FavoriteTips;
+    ViewData["Title"] = "Matrix90Tips";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<div><br /></div>
+<div style="text-align:center; "><img src="~/Images/logo.png" /></div>
+<div> <br /></div>
+
+
+<h1 style="text-align:center">Tip of the Week</h1>
+
+
+<div class="jumbotron">
+
+    <h1 class="display-3">@Model.tips.First().TipTitle</h1>
+    <h3>Subject: @Model.tips.First().SubjectName</h3>
+    <div><br /></div>
+    <p>@Model.tips.First().Tip</p>
+
+</div>
+
+<form asp-action="Matrix90Tips">
+    <table>
+        <tr>
+            <td>
+                <label style="color:slategray" asp-for="@Model.subject">Subject</label>
+                <input asp-for="@Model.subject" value="enter subject" class="form-control"></input>
+            </td>
+           
+        </tr>
+    </table>
+
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+<div><br /></div>
+
+@foreach (var item in Model.tips)
+{
+    <div class="card text-white bg-primary mb-3" style="max-width: 200rem;">
+        <div class="card-header">@item.SubjectName</div>
+        <div class="card-body">
+            <h4 class="card-title">@item.TipTitle</h4>
+            <p class="card-text">@item.Tip</p>
+            @if (favoriteTips.Where(f => f.CustomerId == customerId && f.TipOfWeekId == item.TipOfWeekId).SingleOrDefault() != null)
+            {
+                <a href="#" class="btn btn-primary" onclick="location.href='@Url.Action("RemoveFavoriteTip", "Customers", new { CustomerId = customerId, TipId = item.TipOfWeekId })'">UnFavorite</a>
+            }
+            else
+            {
+                <a href="#" class="btn btn-primary" onclick="location.href='@Url.Action("AddFavoriteTip", "Customers", new { CustomerId = customerId, TipId = item.TipOfWeekId })'">Favorite</a>
+            }
+        </div>
+
+
+
+    </div>
+}
+

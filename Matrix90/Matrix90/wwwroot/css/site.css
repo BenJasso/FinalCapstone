@@ -12,6 +12,9 @@ a {
   color: #0366d6;
 }
 
+.recipeHeader {
+    height: 100px;
+}
 .btn-primary {
   color: #fff;
   background-color: #1b6ec2;
@@ -62,7 +65,7 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
-.footer {
+footer {
   position: absolute;
   bottom: 0;
   width: 100%;

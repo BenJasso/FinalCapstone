@@ -4,79 +4,87 @@
     ViewData["Title"] = "CreateCustomerWorkInfo";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
+<div><br /></div>
+<div class="container" style="text-align:center; "><img src="~/Images/logo.png" /></div>
+<div> <br /></div>
 
-<h1>My Work Info</h1>
+<div class="jumbotron">
 
-<h4>Please fill out the form to the best of your ability.</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateCustomerWorkInfo">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <div class="form-group">
-                <label asp-for="Occupation" class="control-label"></label>
-                <input asp-for="Occupation" class="form-control" />
-                <span asp-validation-for="Occupation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Shift" class="control-label">Work Shift</label>
-                <select asp-for="Shift">
-                    <option value="FirstShift">1st Shift</option>
-                    <option value="SecondShift">2nd Shift</option>
-                    <option value="ThirdShift">3rd Shift</option>
-                </select>
-                <span asp-validation-for="Shift" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="WorkDays" class="control-label">Work Days(If other, provide in addional info)</label>
-                <select asp-for="WorkDays">
-                    <option value="Mon-Fri">Mon-Fri</option>
-                    <option value="Sun-Thur">Sun-Thur</option>
-                    <option value="Other">Other</option>
-                </select>
-                <span asp-validation-for="WorkDays" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DailyWorkHours" class="control-label">Daily Work Hours</label>
-                <input asp-for="DailyWorkHours" class="form-control" />
-                <span asp-validation-for="DailyWorkHours" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="ScheduledBreaks" /> Check box if you have scheduled breaks.
-                </label>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="BringLunchAbility" /> Check box if you can bring a lunch.
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="ActivityLevel" class="control-label">Work Activity Level</label>
-                <select asp-for="ActivityLevel">
-                    <option value="Minimal">Minimal</option>
-                    <option value="Moderate">Moderate</option>
-                    <option value="Very Active">Very Active</option>
-                </select>
-                <span asp-validation-for="ActivityLevel" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AdditionalInfo" class="control-label">Additional Info?</label>
-                <input asp-for="AdditionalInfo" class="form-control" />
-                <span asp-validation-for="AdditionalInfo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="submit" class="btn btn-primary" />
-            </div>
-        </form>
+    <h1 style="text-align:center">Enter Your Work Info</h1>
+
+    <h4 style="text-align:center">Please fill out the form to the best of your ability.</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4"><p></p></div>
+        <div class="col-md-4">
+            <form style="text-align:center" asp-action="CreateCustomerWorkInfo">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Occupation" class="control-label"></label>
+                    <input asp-for="Occupation" class="form-control" />
+                    <span asp-validation-for="Occupation" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Shift" class="control-label">Work Shift</label>
+                    <select asp-for="Shift">
+                        <option value="FirstShift">1st Shift</option>
+                        <option value="SecondShift">2nd Shift</option>
+                        <option value="ThirdShift">3rd Shift</option>
+                    </select>
+                    <span asp-validation-for="Shift" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="WorkDays" class="control-label">Work Days(If other, provide in addional info)</label>
+                    <select asp-for="WorkDays">
+                        <option value="Mon-Fri">Mon-Fri</option>
+                        <option value="Sun-Thur">Sun-Thur</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <span asp-validation-for="WorkDays" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DailyWorkHours" class="control-label">Daily Work Hours</label>
+                    <input asp-for="DailyWorkHours" class="form-control" />
+                    <span asp-validation-for="DailyWorkHours" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="ScheduledBreaks" /> Check box if you have scheduled breaks.
+                    </label>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="BringLunchAbility" /> Check box if you can bring a lunch.
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ActivityLevel" class="control-label">Work Activity Level</label>
+                    <select asp-for="ActivityLevel">
+                        <option value="Minimal">Minimal</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Very Active">Very Active</option>
+                    </select>
+                    <span asp-validation-for="ActivityLevel" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AdditionalInfo" class="control-label">Additional Info?</label>
+                    <input asp-for="AdditionalInfo" class="form-control" />
+                    <span asp-validation-for="AdditionalInfo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="submit" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4"><p></p></div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }

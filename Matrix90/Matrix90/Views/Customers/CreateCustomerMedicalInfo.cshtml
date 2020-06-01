@@ -4,50 +4,57 @@
     ViewData["Title"] = "CreateCustomerMedicalInfo";
     Layout = "~/Views/Shared/_CustomerLayout.cshtml";
 }
+<div><br /></div>
+<div class="container" style="text-align:center; "><img src="~/Images/logo.png" /></div>
+<div> <br /></div>
 
-<h1>My Medical Info</h1>
+<div class="jumbotron">
+    <h1 style="text-align:center">Enter Your Medical Info</h1>
 
-<h4>Please fill out the form to the best of your ability.</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateCustomerMedicalInfo">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <div class="form-group">
-                <label asp-for="MedicalConditions" class="control-label">If any, what are your medical conditions?</label>
-                <input asp-for="MedicalConditions" class="form-control" />
-                <span asp-validation-for="MedicalConditions" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Injuries" class="control-label">If any, what are your injuries?</label>
-                <input asp-for="Injuries" class="form-control" />
-                <span asp-validation-for="Injuries" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PhysicalActivityLimitations" class="control-label">If any, what are your physical activity limitations?</label>
-                <input asp-for="PhysicalActivityLimitations" class="form-control" />
-                <span asp-validation-for="PhysicalActivityLimitations" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="GastroIntestinalDiscomfort" /> Check box if you have Gastrointestinal discomfort.
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="GastroInfo" class="control-label">If any, what gastrointestinal problems do you have?</label>
-                <input asp-for="GastroInfo" class="form-control" />
-                <span asp-validation-for="GastroInfo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AdditionalInfo" class="control-label"> Additional Info?</label>
-                <input asp-for="AdditionalInfo" class="form-control" />
-                <span asp-validation-for="AdditionalInfo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-primary" />
-            </div>
-        </form>
+    <h4 style="text-align:center">Please fill out the form to the best of your ability.</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4"><p></p></div>
+        <div class="col-md-4">
+            <form style="text-align:center" asp-action="CreateCustomerMedicalInfo">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="MedicalConditions" class="control-label">If any, what are your medical conditions?</label>
+                    <input asp-for="MedicalConditions" class="form-control" />
+                    <span asp-validation-for="MedicalConditions" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Injuries" class="control-label">If any, what are your injuries?</label>
+                    <input asp-for="Injuries" class="form-control" />
+                    <span asp-validation-for="Injuries" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhysicalActivityLimitations" class="control-label">If any, what are your physical activity limitations?</label>
+                    <input asp-for="PhysicalActivityLimitations" class="form-control" />
+                    <span asp-validation-for="PhysicalActivityLimitations" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="GastroIntestinalDiscomfort" /> Check box if you have Gastrointestinal discomfort.
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label asp-for="GastroInfo" class="control-label">If any, what gastrointestinal problems do you have?</label>
+                    <input asp-for="GastroInfo" class="form-control" />
+                    <span asp-validation-for="GastroInfo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AdditionalInfo" class="control-label"> Additional Info?</label>
+                    <input asp-for="AdditionalInfo" class="form-control" />
+                    <span asp-validation-for="AdditionalInfo" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4"><p></p></div>
     </div>
 </div>
 

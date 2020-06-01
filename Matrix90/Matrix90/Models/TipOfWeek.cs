@@ -11,6 +11,7 @@ namespace Matrix90.Models
         [Key]
         public int TipOfWeekId { get; set; }
         public string SubjectName { get; set; }
+        public string TipTitle { get; set; }
         public string Tip { get; set; }
 
         public DateTime uploadDate { get; set; }
